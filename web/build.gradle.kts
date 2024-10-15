@@ -6,7 +6,7 @@ plugins {
     id("java-library")
     id("org.springframework.boot") version "3.3.3"
     id("io.spring.dependency-management") version "1.1.6"
-    id("io.freefair.lombok") version "8.10.2"
+    id("io.freefair.lombok") version "8.7.1"
     id("org.springframework.cloud.contract") version "4.1.4"
     id("org.openapi.generator") version "7.9.0"
 }
@@ -25,6 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework:spring-tx")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier")
 }
@@ -52,10 +53,11 @@ tasks.register<GenerateTask>("openApiGenerate-custom") {
 
     generatorName.set("spring")
     library.set("spring-boot")
-    inputSpec.set("$rootDir/src/main/resources/api.yml")
+    inputSpec.set("$rootDir/web/src/main/resources/api.yml")
     outputDir.set("$buildDirectoryAsPath/generated/openapi")
     apiPackage.set("com.example.generated.api")
     modelPackage.set("com.example.generated.model")
+    configFile.set("$rootDir/web/src/main/resources/config.yml")
 }
 
 tasks.withType<Test>().configureEach {
