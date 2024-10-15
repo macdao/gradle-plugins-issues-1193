@@ -6,7 +6,7 @@ plugins {
     id("java-library")
     id("org.springframework.boot") version "3.3.3"
     id("io.spring.dependency-management") version "1.1.6"
-    id("io.freefair.lombok") version "8.7.1"
+    id("io.freefair.lombok") version "8.10.2"
     id("org.springframework.cloud.contract") version "4.1.4"
     id("org.openapi.generator") version "7.9.0"
 }
