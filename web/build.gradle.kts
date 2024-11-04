@@ -68,3 +68,10 @@ tasks.withType<JavaCompile>().configureEach {
     dependsOn("openApiGenerate-custom")
     options.compilerArgs.add("-parameters")
 }
+
+tasks.configureEach {
+    if (name == "generateEffectiveLombokConfig") {
+        inputs.dir(tasks.named("openApiGenerate-custom").get().outputs.files.singleFile)
+        dependsOn(tasks.named("openApiGenerate-custom"))
+    }
+}
