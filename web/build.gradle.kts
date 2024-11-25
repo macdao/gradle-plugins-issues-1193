@@ -1,4 +1,3 @@
-import org.gradle.kotlin.dsl.java
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 import org.springframework.cloud.contract.verifier.config.TestMode
 
@@ -6,7 +5,7 @@ plugins {
     id("java-library")
     id("org.springframework.boot") version "3.3.3"
     id("io.spring.dependency-management") version "1.1.6"
-    id("io.freefair.lombok") version "8.10.2"
+    id("io.freefair.lombok") version "8.11"
     id("org.springframework.cloud.contract") version "4.1.4"
     id("org.openapi.generator") version "7.9.0"
 }
@@ -67,11 +66,4 @@ tasks.withType<Test>().configureEach {
 tasks.withType<JavaCompile>().configureEach {
     dependsOn("openApiGenerate-custom")
     options.compilerArgs.add("-parameters")
-}
-
-tasks.configureEach {
-    if (name == "generateEffectiveLombokConfig") {
-        inputs.dir(tasks.named("openApiGenerate-custom").get().outputs.files.singleFile)
-        dependsOn(tasks.named("openApiGenerate-custom"))
-    }
 }
